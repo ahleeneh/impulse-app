@@ -7,6 +7,7 @@ from pymongo import MongoClient
 from models.user import User
 from dotenv import load_dotenv
 import os
+from bson import ObjectId
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -30,19 +31,19 @@ def home():
 
 @app.route('/user')
 def get_current_user():
-    user_id = session.get("user_id")
+    user_id = session["user_id"]
 
     if not user_id:
         return jsonify({"error": "Unauthorized"}), 401
     
-    user = db.users.find_one({"_id": user_id})
+    user = db.users.find_one({"_id": ObjectId(user_id)})
     
     if not user: 
         return jsonify({"error": "User not found"}), 404
 
     return jsonify({
         "id": str(user["_id"]),
-        "email": user["email"]
+        "username": user["username"]
     })
 
 
