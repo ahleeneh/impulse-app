@@ -1,38 +1,123 @@
+:root {
+  --color-white: #fff;
+  --color-black: #000;
+  --color-light-grey: #f3f3f3;
+
+  --color-dark-blue: #3f494a;
+  --color-dark-blue-hover: #2a3132;
+
+  --border-radius-1: 0.3rem;
+  --border-radius-2: 0.1rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Albert Sans', sans-serif;
+  overflow: hidden;
+}
+
+
 .App {
+  margin: 0;
+}
+
+
+.page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.image-container {
+  flex: 1;
+  max-width: 500px;
+  height: 100vh;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: 100vh;
+}
+
+.form-container {
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.form-container h2 {
+  margin-bottom: 1.5rem;
+}
+
+.form-container p {
+  margin-top: 1.5rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.form-container form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 5rem;
+  display: flex;
+  max-width: 550px;
+}
+
+.form-container label {
+  margin: 1.5rem 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.form-container input {
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: var(--color-light-grey);
+  border-radius: var(--border-radius-1);
+  border: none;
+}
+
+.form-container button {
+  font-size: 1rem;
+  padding: 15px;
+  background-color: var(--color-dark-blue);
+  border-radius: var(--border-radius-1);
   color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 300ms ease;
 }
 
-.App-link {
-  color: #61dafb;
+.form-container button:hover {
+  background-color: var(--color-dark-blue-hover);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media(max-width: 1052px) {
+  .image-container {
+    display: none;
   }
-  to {
-    transform: rotate(360deg);
+
+  .form-container {
+    flex: 1;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+  }
+  
+  .form-container h2 {
+    margin-bottom: 1.5rem;
+    text-align: center; /* Center the heading text */
+  }
+  
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    max-width: 450px;
+    margin: 0 auto;
+    box-sizing: border-box; /* Added box-sizing property */
   }
 }
