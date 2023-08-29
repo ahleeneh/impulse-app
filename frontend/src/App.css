@@ -5,6 +5,7 @@
   --color-light-grey-hover: #ebebeb;
   --color-accent-pink: #ba8871;
   --color-accent-yellow: #a68c42;
+  --color-accent-green: #677a5a;
 
   --color-light-blue: #afc0ba;
   --color-dark-blue: #3f494a;
@@ -136,7 +137,8 @@
   transition: all 300ms ease;
 }
 
-.App-nav a:hover, .App-nav span:hover {
+.App-nav a:hover,
+.App-nav span:hover {
   box-sizing: border-box;
   color: var(--color-light-blue);
 }
@@ -179,13 +181,15 @@
   padding: 4rem;
   max-width: 1500px;
   margin: 0 auto 0 0;
+  overflow: auto;
 }
 
 .App-content h1 {
   padding: 1rem;
 }
 
-.user-overview, .user-goals {
+.user-overview,
+.user-goals {
   padding: 0 1rem;
   margin: 1.5rem 0;
   box-sizing: border-box;
@@ -206,7 +210,7 @@
   background-color: var(--color-light-grey);
   box-sizing: border-box;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   transition: all 300ms ease;
 }
 
@@ -235,6 +239,28 @@
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
+
+/* 
+  BUDGET PAGE
+*/
+.budget-component {
+  padding: 0 1rem;
+  margin: 1.5rem 0;
+  box-sizing: border-box;
+}
+
+.card-budget {
+  height: auto;
+}
+
+.income {
+  border-top: 10px solid var(--color-accent-green);
+}
+
+.housing, .recurring, .additional {
+  border-top: 10px solid var(--color-accent-yellow);
+}
+
 
 @media(max-width: 1052px) {
   .image-container {
