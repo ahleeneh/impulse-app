@@ -5,6 +5,7 @@ from flask_session import Session
 from database import get_database
 from pymongo import MongoClient
 from models.user import User
+from models.budget import Budget
 from dotenv import load_dotenv
 import os
 from bson import ObjectId
@@ -86,6 +87,16 @@ def login_user():
     
     user_id = str(user["_id"])
     session["user_id"] = user_id
+
+    # Retrieve budget data from the database
+    budget_data = db.budgets.find_one({"user_id": user_id})
+    if budget_data:
+        # Store data directly in the session
+        session['budget'] = budget_data['categories']
+    else:
+        # Create a new Budget instance and store it in the session
+        user_budget = Budget(user_id)
+        session['budget'] = user_budget.categories
 
     return jsonify({
         "id": str(user["_id"]),
