@@ -89,25 +89,6 @@ def login_user():
     user_id = str(user["_id"])
     session["user_id"] = user_id
 
-    # # Retrieve budget data from the database
-    # budget_data = db.budgets.find_one({"user_id": user_id})
-    # if budget_data:
-    #     # Extract month and year from the budget data
-    #     month = budget_data['month']
-    #     year = budget_data['year']
-    #     # Create a budget instance with the retrieved dat
-    #     user_budget = Budget(user_id, month=month,  year=year)
-    #     # Store data directly in the session
-    #     session['budget'] = user_budget
-    # else:
-    #     # Create a new Budget instance and store it in the session
-    #     user_budget = Budget(user_id)
-    #     session['budget'] = user_budget
-    
-    # print(session['budget'])
-    # print(session['budget'].budgets)
-    # print(session['budget'].budgets['categories'])
-
     return jsonify({
         "id": str(user["_id"]),
         "username": user["username"]
@@ -136,6 +117,40 @@ def get_user_budget():
     else:
         return jsonify({}), 204
 
+@app.route('/budget', methods=["POST"])
+def add_item_to_budget():
+    user_id = session["user_id"]
+
+    if not user_id:
+        return jsonify({"error": "Unauthorized"}), 401
+    
+    data = request.json
+    category = data.get('category')
+    item_name = data.get('item_name')
+    item_amount = data.get('item_amount')
+
+    if not (category and item_name and item_amount):
+        return jsonify({"error": "Invalid request"}), 400
+
+    budget_data = db.budgets.find_one({"user_id": user_id})
+
+    if not budget_data:
+        new_budget = Budget(user_id)
+        new_budget.save()
+        budget_data = db.budgets.find_one({"user_id": user_id})
+    
+    # Update the existing budget with the new item, or create a new one if it doesn't exist
+    if budget_data:
+        budgets_data = {"categories": budget_data["categories"], "month": budget_data["month"], "year": budget_data["year"]}
+        budget = Budget(user_id=user_id, budgets=budgets_data)
+        budget.add_item_to_category(category, item_name, item_amount)
+        budget.update_database()
+    else:
+        new_budget = Budget(user_id)
+        new_budget.add_item_to_category(category, item_name, item_amount)
+        new_budget.save()
+
+    return jsonify({"message": "Item added to budget"}), 200
 
 if __name__ == "__main__":
     app.run(port=6745, debug=True)
