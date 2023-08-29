@@ -2,11 +2,15 @@
   --color-white: #fff;
   --color-black: #000;
   --color-light-grey: #f3f3f3;
+  --color-light-grey-hover: #ebebeb;
+  --color-accent-pink: #ba8871;
+  --color-accent-yellow: #a68c42;
 
+  --color-light-blue: #afc0ba;
   --color-dark-blue: #3f494a;
   --color-dark-blue-hover: #2a3132;
 
-  --border-radius-1: 0.3rem;
+  --border-radius-1: 0.5rem;
   --border-radius-2: 0.1rem;
 }
 
@@ -15,14 +19,18 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Albert Sans', sans-serif;
-  overflow: hidden;
 }
 
 
 .App {
   margin: 0;
+  overflow: hidden;
+
 }
 
+/* 
+  LOGIN AND REGISTER PAGES
+*/
 
 .page-container {
   display: flex;
@@ -35,11 +43,12 @@
   flex: 1;
   max-width: 500px;
   height: 100vh;
+  overflow: hidden;
 }
 
 .image-container img {
-  max-width: 100%;
   height: 100vh;
+
 }
 
 .form-container {
@@ -95,6 +104,138 @@
   background-color: var(--color-dark-blue-hover);
 }
 
+
+/* 
+  USER DASHBOARD PAGE 
+*/
+.page-container-user {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  /* background-color: var(--color-dark-blue); */
+}
+
+.App-nav {
+  flex: 1;
+  max-width: 250px;
+  height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-dark-blue);
+  border-radius: 0 2rem 2rem 0;
+}
+
+.App-nav a,
+.App-nav span {
+  padding: 1rem;
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-sizing: border-box;
+  transition: all 300ms ease;
+}
+
+.App-nav a:hover, .App-nav span:hover {
+  box-sizing: border-box;
+  color: var(--color-light-blue);
+}
+
+.nav-username {
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-light-blue);
+}
+
+.App-nav span:last-child {
+  cursor: pointer;
+}
+
+.nav-top {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-bottom {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.App-nav h2 {
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: var(--color-white);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.App-content {
+  flex: 1;
+  margin: 0;
+  padding: 4rem;
+  max-width: 1500px;
+  margin: 0 auto 0 0;
+}
+
+.App-content h1 {
+  padding: 1rem;
+}
+
+.user-overview, .user-goals {
+  padding: 0 1rem;
+  margin: 1.5rem 0;
+  box-sizing: border-box;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.card {
+  width: 100%;
+  padding: 1rem;
+  height: 200px;
+  align-items: center;
+  border-radius: var(--border-radius-1);
+  background-color: var(--color-light-grey);
+  box-sizing: border-box;
+  font-weight: 600;
+  font-size: 1.3rem;
+  transition: all 300ms ease;
+}
+
+.card:hover {
+  background-color: var(--color-light-grey-hover);
+}
+
+.card-full-width {
+  height: 150px;
+  background-image: url('./images/49.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: var(--color-white);
+  margin-bottom: 1.5rem;
+}
+
+/* 
+  GOALS COMPONENT
+*/
+.user-goals {
+  margin-top: 2rem;
+}
+
+.user-goals h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
 @media(max-width: 1052px) {
   .image-container {
     display: none;
@@ -103,21 +244,25 @@
   .form-container {
     flex: 1;
     flex-direction: column;
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
+    justify-content: center;
+    /* Center vertically */
+    align-items: center;
+    /* Center horizontally */
   }
-  
+
   .form-container h2 {
     margin-bottom: 1.5rem;
-    text-align: center; /* Center the heading text */
+    text-align: center;
+    /* Center the heading text */
   }
-  
+
   .form-container form {
     display: flex;
     flex-direction: column;
     padding: 2rem;
     max-width: 450px;
     margin: 0 auto;
-    box-sizing: border-box; /* Added box-sizing property */
+    box-sizing: border-box;
+    /* Added box-sizing property */
   }
 }
