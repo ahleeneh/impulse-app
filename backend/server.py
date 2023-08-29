@@ -91,12 +91,21 @@ def login_user():
     # Retrieve budget data from the database
     budget_data = db.budgets.find_one({"user_id": user_id})
     if budget_data:
+        # Extract month and year from the budget data
+        month = budget_data['month']
+        year = budget_data['year']
+        # Create a budget instance with the retrieved dat
+        user_budget = Budget(user_id, month=month,  year=year)
         # Store data directly in the session
-        session['budget'] = budget_data['categories']
+        session['budget'] = user_budget
     else:
         # Create a new Budget instance and store it in the session
         user_budget = Budget(user_id)
-        session['budget'] = user_budget.categories
+        session['budget'] = user_budget
+    
+    print(session['budget'])
+    print(session['budget'].budgets)
+    print(session['budget'].budgets['categories'])
 
     return jsonify({
         "id": str(user["_id"]),
