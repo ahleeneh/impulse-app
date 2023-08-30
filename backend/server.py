@@ -115,7 +115,6 @@ def get_user_budget():
         return jsonify({"error": "Month and year are required"}), 400
     
     budget_data = db.budgets.find_one({"user_id": user_id, "month": month, "year": year})
-    print('found! budget data: ', budget_data)
 
     if budget_data:
         budget_data["_id"] = str(budget_data["_id"])
@@ -141,23 +140,14 @@ def add_item_to_budget():
         return jsonify({"error": "Invalid request"}), 400
 
     budget_data = db.budgets.find_one({"user_id": user_id, "month": month, "year": year})
-    print('backend for post ', budget_data)
-    # budget_data = db.budgets.find_one({"user_id": user_id})
 
     if not budget_data:
-        print('no budget data found....', month, year)
         new_budget = Budget(user_id, month, year)
-        print(new_budget.user_id)
-        print(new_budget.budgets)
         new_budget.add_item_to_category(category, item_name, item_amount)
         new_budget.save()
-        print('new budget has been saved!!!')
     else:
-        print('budget already found....', budget_data)
-        budgets_data = {"categories": budget_data["categories"], "month": month, "year": year}
         budget = Budget(user_id=user_id, month=month, year=year)
         budget.add_item_to_category(category, item_name, item_amount)
-        print('UPDATEDDDD: ', budget)
         budget.update_database(category, item_name, item_amount)
 
     return jsonify({"message": "Item added to budget"}), 200

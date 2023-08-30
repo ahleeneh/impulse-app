@@ -6,6 +6,7 @@ function BudgetIncome({ userBudget, refreshBudget }) {
     const [newIncomeAmount, setNewIncomeAmount] = useState('');
     const [isAddingItem, setIsAddingItem] = useState(false);
 
+    
     const currentMonth = new Date().getMonth() + 1;
     const currentYear = new Date().getFullYear();
 

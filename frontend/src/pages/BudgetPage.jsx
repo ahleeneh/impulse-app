@@ -1,22 +1,20 @@
 import React from 'react';
-import BudgetIncome from '../components/BudgetIncome';
-import BudgetHousing from '../components/BudgetHousing';
-import BudgetRecurring from '../components/BudgetRecurring';
-import BudgetAdditional from '../components/BudgetAdditional';
 import UserPageWrapper from '../components/UserPageWrapper';
+import BudgetComponent from '../components/BudgetComponent';
 import useUserBudget from '../hooks/useUserBudget';
 
+
 function BudgetPage() {
-    const currentMonth = new Date().getMonth() + 1; 
+    const currentMonth = new Date().getMonth() + 1;
     const currentYear = new Date().getFullYear();
-    const {userBudget, refreshBudget } = useUserBudget(currentMonth, currentYear);
+    const { userBudget, refreshBudget } = useUserBudget(currentMonth, currentYear);
 
     return (
         <UserPageWrapper pageName="User Budget">
-            <BudgetIncome userBudget={userBudget} refreshBudget={refreshBudget} />
-            <BudgetHousing userBudget={userBudget} refreshBudget={refreshBudget} />
-            <BudgetRecurring userBudget={userBudget} refreshBudget={refreshBudget} />
-            <BudgetAdditional userBudget={userBudget} refreshBudget={refreshBudget} />
+            <BudgetComponent userBudget={userBudget} refreshBudget={refreshBudget} category="income" />
+            <BudgetComponent userBudget={userBudget} refreshBudget={refreshBudget} category="housing" />
+            <BudgetComponent userBudget={userBudget} refreshBudget={refreshBudget} category="recurring" />
+            <BudgetComponent userBudget={userBudget} refreshBudget={refreshBudget} category="additional" />
         </UserPageWrapper>
     );
 

@@ -25,7 +25,6 @@ class Budget:
             }
         }
 
-
     def save(self):
         data = {
             "user_id": self.user_id,
@@ -40,24 +39,16 @@ class Budget:
          self.budgets["categories"][category].append(item)
 
     def update_database(self, category, item_name, item_amount):
-        # data = {
-        #     "user_id": self.user_id,
-        #     "month": self.budgets["month"],
-        #     "year": self.budgets["year"],
-        #     "categories": self.budgets["categories"]
-        # }
-        # print('update database data: ', data)
-
         query = {
             "user_id": self.user_id,
             "month": self.budgets["month"],
             "year": self.budgets["year"]
         }
-        print('update database query: ', query)
         
         update_data = {
             "$addToSet": {  # Use $addToSet to add to array without duplicates
                 f"categories.{category}": {"name": item_name, "amount": item_amount}
             }
         }
+
         budget_collection.update_one(query, update_data)
