@@ -5,7 +5,9 @@ import UserPageWrapper from '../components/UserPageWrapper';
 import useUserBudget from '../hooks/useUserBudget';
 
 function DashboardPage() {
-    const {userBudget, refreshBudget} = useUserBudget();
+    const currentMonth = new Date().getMonth() + 1; 
+    const currentYear = new Date().getFullYear();
+    const {userBudget, refreshBudget} = useUserBudget(currentMonth, currentYear);
 
     return (
         <UserPageWrapper pageName="User Dashboard">

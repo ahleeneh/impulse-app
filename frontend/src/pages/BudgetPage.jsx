@@ -7,14 +7,16 @@ import UserPageWrapper from '../components/UserPageWrapper';
 import useUserBudget from '../hooks/useUserBudget';
 
 function BudgetPage() {
-    const {userBudget, refreshBudget } = useUserBudget();
+    const currentMonth = 9; // Adding 1 to get 1-based month
+    const currentYear = new Date().getFullYear();
+    const {userBudget, refreshBudget } = useUserBudget(currentMonth, currentYear);
 
     return (
         <UserPageWrapper pageName="User Budget">
             <BudgetIncome userBudget={userBudget} refreshBudget={refreshBudget} />
-            <BudgetHousing userBudget={userBudget} />
-            <BudgetRecurring userBudget={userBudget} />
-            <BudgetAdditional userBudget={userBudget} />
+            <BudgetHousing userBudget={userBudget} refreshBudget={refreshBudget} />
+            <BudgetRecurring userBudget={userBudget} refreshBudget={refreshBudget} />
+            <BudgetAdditional userBudget={userBudget} refreshBudget={refreshBudget} />
         </UserPageWrapper>
     );
 

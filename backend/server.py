@@ -108,8 +108,14 @@ def get_user_budget():
     if not user_id:
         return jsonify({"error": "Unauthorized"}), 401
     
-    budget_data = db.budgets.find_one({"user_id": user_id})
-    print('budget data: ', budget_data)
+    month = int(request.args['month'])
+    year = int(request.args['year'])
+
+    if not (month and year):
+        return jsonify({"error": "Month and year are required"}), 400
+    
+    budget_data = db.budgets.find_one({"user_id": user_id, "month": month, "year": year})
+    print('found! budget data: ', budget_data)
 
     if budget_data:
         budget_data["_id"] = str(budget_data["_id"])
@@ -128,8 +134,10 @@ def add_item_to_budget():
     category = data.get('category')
     item_name = data.get('item_name')
     item_amount = data.get('item_amount')
+    month = data.get('month')
+    year = data.get('year')
 
-    if not (category and item_name and item_amount):
+    if not (category and item_name and item_amount and month and year):
         return jsonify({"error": "Invalid request"}), 400
 
     budget_data = db.budgets.find_one({"user_id": user_id})
@@ -141,7 +149,7 @@ def add_item_to_budget():
     
     # Update the existing budget with the new item, or create a new one if it doesn't exist
     if budget_data:
-        budgets_data = {"categories": budget_data["categories"], "month": budget_data["month"], "year": budget_data["year"]}
+        budgets_data = {"categories": budget_data["categories"], "month": month, "year": year}
         budget = Budget(user_id=user_id, budgets=budgets_data)
         budget.add_item_to_category(category, item_name, item_amount)
         budget.update_database()

@@ -7,8 +7,9 @@ budget_collection = db["budgets"]
 
 # Check if the index already exists
 existing_indexes = budget_collection.index_information()
-if "user_id_1" not in existing_indexes:
-    budget_collection.create_index("user_id", unique=True)
+if "user_id_year_month_1" not in existing_indexes:
+    budget_collection.create_index([("user_id", 1), ("year", 1), ("month", 1)], name="user_id_year_month_1", unique=True)
+
 
 class Budget:
     def __init__(self, user_id, budgets=None, month=None, year=None):

@@ -67,8 +67,6 @@ function BudgetIncome({ userBudget, refreshBudget }) {
                     </tbody>
                 </table>
 
-                
-
                 {isAddingItem ? (
                     <div className="add-item-form">
                         <div className="add-item-input-container">
