@@ -12,21 +12,19 @@ if "user_id_year_month_1" not in existing_indexes:
 
 
 class Budget:
-    def __init__(self, user_id, budgets=None, month=None, year=None):
+    def __init__(self, user_id, month=None, year=None):
         self.user_id = user_id
-        if budgets is None:
-            self.budgets = {
-                "month": month or datetime.now().month,
-                "year": year or datetime.now().year,
-                "categories": {
-                    "income": [],
-                    "housing": [],
-                    "recurring": [],
-                    "additional": [] 
-                }
+        self.budgets = {
+            "month": month,
+            "year": year,
+            "categories": {
+                "income": [],
+                "housing": [],
+                "recurring": [],
+                "additional": [] 
             }
-        else:
-            self.budgets = budgets
+        }
+
 
     def save(self):
         data = {
@@ -48,6 +46,13 @@ class Budget:
             "year": self.budgets["year"],
             "categories": self.budgets["categories"]
         }
+        print('update database data: ', data)
 
-        query = {"user_id": self.user_id}
+        query = {
+            "user_id": self.user_id,
+            "month": self.budgets["month"],
+            "year": self.budgets["year"]
+        }
+        print('update database query: ', query)
+        
         budget_collection.update_one(query, {"$set": data})

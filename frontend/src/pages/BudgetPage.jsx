@@ -7,7 +7,7 @@ import UserPageWrapper from '../components/UserPageWrapper';
 import useUserBudget from '../hooks/useUserBudget';
 
 function BudgetPage() {
-    const currentMonth = 9; // Adding 1 to get 1-based month
+    const currentMonth = 6; 
     const currentYear = new Date().getFullYear();
     const {userBudget, refreshBudget } = useUserBudget(currentMonth, currentYear);
 

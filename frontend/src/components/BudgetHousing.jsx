@@ -6,7 +6,7 @@ function BudgetHousing({ userBudget, refreshBudget }) {
     const [newHousingAmount, setNewHousingAmount] = useState('');
     const [isAddingItem, setIsAddingItem] = useState(false);
 
-    const currentMonth = 8;
+    const currentMonth = 6;
     const currentYear = new Date().getFullYear();
 
     let filteredHousing = [];
@@ -34,6 +34,8 @@ function BudgetHousing({ userBudget, refreshBudget }) {
                 month: currentMonth,
                 year: currentYear
             })
+
+            console.log('response from housing post: ', response.data)
 
             if (response.status === 200) {
                 refreshBudget();

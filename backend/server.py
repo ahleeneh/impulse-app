@@ -140,23 +140,24 @@ def add_item_to_budget():
     if not (category and item_name and item_amount and month and year):
         return jsonify({"error": "Invalid request"}), 400
 
-    budget_data = db.budgets.find_one({"user_id": user_id})
+    budget_data = db.budgets.find_one({"user_id": user_id, "month": month, "year": year})
+    print('backend for post ', budget_data)
+    # budget_data = db.budgets.find_one({"user_id": user_id})
 
     if not budget_data:
-        new_budget = Budget(user_id)
+        print('no budget data found....', month, year)
+        new_budget = Budget(user_id, month, year)
+        print(new_budget.user_id)
+        print(new_budget.budgets)
+        new_budget.add_item_to_category(category, item_name, item_amount)
         new_budget.save()
-        budget_data = db.budgets.find_one({"user_id": user_id})
-    
-    # Update the existing budget with the new item, or create a new one if it doesn't exist
-    if budget_data:
+        print('new budget has been saved!!!')
+    else:
+        print('budget already found....', budget_data)
         budgets_data = {"categories": budget_data["categories"], "month": month, "year": year}
         budget = Budget(user_id=user_id, budgets=budgets_data)
         budget.add_item_to_category(category, item_name, item_amount)
         budget.update_database()
-    else:
-        new_budget = Budget(user_id)
-        new_budget.add_item_to_category(category, item_name, item_amount)
-        new_budget.save()
 
     return jsonify({"message": "Item added to budget"}), 200
 
