@@ -30,7 +30,9 @@ function BudgetIncome({ userBudget, refreshBudget }) {
             const response = await axios.post('/budget', {
                 category: 'income',
                 item_name: newIncomeName,
-                item_amount: newIncomeAmount
+                item_amount: newIncomeAmount,
+                month: currentMonth,
+                year: currentYear
             })
 
             if (response.status === 200) {
@@ -38,7 +40,6 @@ function BudgetIncome({ userBudget, refreshBudget }) {
                 setIsAddingItem(false);
                 setNewIncomeName('');
                 setNewIncomeAmount('');
-                console.log(userBudget)
             }
         } catch (error) {
             console.error(error);

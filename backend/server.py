@@ -155,9 +155,10 @@ def add_item_to_budget():
     else:
         print('budget already found....', budget_data)
         budgets_data = {"categories": budget_data["categories"], "month": month, "year": year}
-        budget = Budget(user_id=user_id, budgets=budgets_data)
+        budget = Budget(user_id=user_id, month=month, year=year)
         budget.add_item_to_category(category, item_name, item_amount)
-        budget.update_database()
+        print('UPDATEDDDD: ', budget)
+        budget.update_database(category, item_name, item_amount)
 
     return jsonify({"message": "Item added to budget"}), 200
 
