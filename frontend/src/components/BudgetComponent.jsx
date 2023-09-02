@@ -21,7 +21,7 @@ function BudgetComponent({ userBudget, isLoading, refreshBudget, category, selec
                         {categoryItems.map((item, index) => (
                             <tr key={index}>
                                 <td>{item.name}</td>
-                                <td>{item.amount}</td>
+                                <td>${item.amount}</td>
                             </tr>
                         ))}
                     </tbody>

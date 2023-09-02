@@ -1,7 +1,11 @@
 import React from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
+import WalletRoundedIcon from '@mui/icons-material/WalletRounded';
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
 function Navigation({ username }) {
     const navigate = useNavigate();
@@ -20,17 +24,25 @@ function Navigation({ username }) {
         <nav className="App-nav">
             <div className="nav-top">
                 <h2>Impulse</h2>
-                <Link to="/dashboard">
-                    Dashboard
+                <Link to="/dashboard" className="nav-link-container">
+                    <GridViewRoundedIcon />
+                    <p>Dashboard</p>
                 </Link>
-                <Link to="/budget">
-                    Budget
+                <Link to="/budget" className="nav-link-container">
+                    <WalletRoundedIcon />
+                    <p>Budget</p>
                 </Link>
             </div>
 
             <div className="nav-bottom">
-                <p className="nav-username">{username}</p>
-                <span onClick={handleLogout}>Logout</span>
+                <p className="nav-username nav-link-container">
+                    <AccountCircleRoundedIcon />
+                    {username}
+                </p>
+                <span onClick={handleLogout} className="nav-link-container">
+                    <LogoutRoundedIcon />
+                    <p>Logout</p>
+                </span>
             </div>
         </nav>
     );

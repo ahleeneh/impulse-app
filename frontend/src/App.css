@@ -145,7 +145,7 @@
 
 .App-nav a,
 .App-nav span {
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   color: var(--color-white);
   text-decoration: none;
   font-size: 1.1rem;
@@ -175,6 +175,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .nav-bottom {
@@ -191,15 +192,24 @@
   margin-bottom: 1rem;
 }
 
+.nav-link-container {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+
+.active-link {
+  background-color: red;
+}
+
 .App-content {
   flex: 1;
   margin: 0;
   padding: 4rem 5rem;
-  /* max-width: 1500px; */
   margin: 0 auto 0 0;
   overflow: auto;
 }
-
 
 .App-content h1 {
   padding: 1rem 0;
@@ -242,16 +252,16 @@
 }
 
 .card h3 {
-  font-weight: 300; 
-  font-size: 1.2rem; 
+  font-weight: 300;
+  font-size: 1.2rem;
 }
 
-/* .card:hover {
-  background-color: var(--color-light-grey-hover);
-} */
+.card-budget h3 {
+  font-weight: 500;
+  font-size: 1.3rem;
+}
 
 .card-full-width {
-  /* height: 150px; */
   height: auto;
   background-image: url('./images/48.png');
   background-size: cover;
@@ -260,8 +270,6 @@
   color: var(--color-white);
   margin: 2rem 0;
 }
-
-
 
 
 /* 
@@ -287,15 +295,8 @@
 
 .card-budget {
   height: auto;
-  /* padding: 1.5rem; */
 }
 
-.income,
-.housing,
-.recurring,
-.additional {
-  border-top: 10px solid var(--color-light-blue);
-}
 
 .date-picker {
   display: flex;
@@ -371,8 +372,6 @@ td {
   width: 30%;
 }
 
-
-
 .add-item-input-container {
   display: flex;
   justify-content: space-evenly;
@@ -418,41 +417,43 @@ td {
 /* 
   PROGRESS BAR 
 */
-/* Container for the progress bar */
-/* Container for the progress bar */
 .progress-bar {
   width: 100%;
-  height: 20px;
+  height: 30px;
   background-color: var(--color-light-grey);
-  border-radius: 5px;
+  border-radius: var(--border-radius-1);
   margin: 0.5rem 0;
-  position: relative; /* Allows us to position the label */
+  position: relative;
 }
 
-/* Expenses bar (filled part) */
-.remaining-bar {
+.expenses-bar {
   height: 100%;
   border-radius: 5px;
-  position: relative; /* Allows us to position the label */
-  background-image: url('./images/100.jpg');
+  position: relative;
+  background-image: url('./images/56.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-/* Label for expenses */
+.over-budget {
+  background-image: url('./images/51.jpg');
+}
+
 .label {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white; /* You can change the color as desired */
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-light-grey);
+  white-space: nowrap;
 }
 
 
-
 /* 
-ICONS 
+  ICONS 
 */
 .icon {
   width: 2rem !important;
@@ -485,7 +486,11 @@ ICONS
 }
 
 
-@media(max-width: 1052px) {
+
+/* 
+  MEDIA QUERIES
+*/
+@media(max-width: 1080px) {
   .image-container {
     display: none;
   }
@@ -494,15 +499,12 @@ ICONS
     flex: 1;
     flex-direction: column;
     justify-content: center;
-    /* Center vertically */
     align-items: center;
-    /* Center horizontally */
   }
 
   .form-container h2 {
     margin-bottom: 1.5rem;
     text-align: center;
-    /* Center the heading text */
   }
 
   .form-container form {
@@ -512,6 +514,77 @@ ICONS
     max-width: 450px;
     margin: 0 auto;
     box-sizing: border-box;
-    /* Added box-sizing property */
+  }
+
+  .card-container {
+    flex-wrap: wrap;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .item-header {
+    width: 80%;
+  }
+
+  .cost-header {
+    width: 20%;
+  }
+}
+
+@media(max-width: 769px) {
+  .App-nav {
+    max-width: 75px;
+    padding: 3rem 0;
+  }
+
+  .App-nav a, .App-nav span {
+    padding: 0rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .nav-top h2 {
+    display: none;
+    margin: 0;
+  }
+
+  .nav-top {
+    gap: 2rem;
+  }
+
+  .nav-link-container {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .nav-link-container p,
+  .nav-username {
+    display: none;
+  }
+
+  .App-content {
+    padding: 3rem 1rem;
+  }
+
+  .App-content h1 {
+    padding: 0;
+  }
+
+  .add-item-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1rem;
+  }
+
+  .item-header {
+    width: 100%;
+  }
+
+  .cost-header {
+    width: 100%;
   }
 }

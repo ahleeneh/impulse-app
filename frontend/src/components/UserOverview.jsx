@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import WorkIcon from '@mui/icons-material/Work';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import PaymentIcon from '@mui/icons-material/Payment';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
+import WorkRoundedIcon from '@mui/icons-material/WorkRounded';
+import ApartmentRoundedIcon from '@mui/icons-material/ApartmentRounded';
+import PaymentRoundedIcon from '@mui/icons-material/PaymentRounded';
+import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
 
 function UserOverview({ userBudget }) {
     const [totalIncome, setTotalIncome] = useState(null);
@@ -67,7 +67,7 @@ function UserOverview({ userBudget }) {
         calculateRemaining();
     }, [totalIncome, totalHousing, totalRecurring, totalAdditional]);
 
-    const remainingPercentage = ((totalIncome - totalExpenses) / totalIncome) * 100;
+    const expensesPercentage = (totalExpenses / totalIncome) * 100;
 
     return (
         <div className="user-overview">
@@ -77,31 +77,40 @@ function UserOverview({ userBudget }) {
                 <h3>Current Balance</h3>
 
                 <div className="progress-bar">
-                    <div className="remaining-bar" style={{ width: `${remainingPercentage}%` }}></div>
+                    <div
+                        className={`expenses-bar ${expensesPercentage > 100 ? 'over-budget' : ''}`}
+                        style={{ width: `${expensesPercentage > 100 ? 100 : expensesPercentage}%` }}>
+                        <span className="label">
+                            {expensesPercentage > 100
+                                ? 'Budget exceeded!'
+                                : `Expenses: ${formatCurrency(totalExpenses)}`
+                            }
+                        </span>
+                    </div>
                 </div>
             </div>
 
             <div className="card-container">
                 <div className="card">
-                    <WorkIcon className="icon icon-income" />
+                    <WorkRoundedIcon className="icon icon-income" />
                     <p>{formatCurrency(totalIncome)}</p>
                     <h3>Total Income</h3>
                 </div>
-                
+
                 <div className="card">
-                    <ApartmentIcon className="icon icon-housing" />
+                    <ApartmentRoundedIcon className="icon icon-housing" />
                     <p>{formatCurrency(totalHousing)}</p>
                     <h3>Housing Expenses</h3>
                 </div>
 
                 <div className="card">
-                    <PaymentIcon className="icon icon-recurring" />
+                    <PaymentRoundedIcon className="icon icon-recurring" />
                     <p>{formatCurrency(totalRecurring)}</p>
                     <h3>Recurring Expenses</h3>
                 </div>
 
                 <div className="card">
-                    <LocalMallIcon className="icon icon-additional" />
+                    <LocalMallRoundedIcon className="icon icon-additional" />
                     <p>{formatCurrency(totalAdditional)}</p>
                     <h3>Additional Expenses</h3>
                 </div>
