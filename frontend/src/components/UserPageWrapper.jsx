@@ -25,8 +25,6 @@ function UserPageWrapper({ children, pageName }) {
         checkAuthentication();
     }, []);
 
-
-
     return (
         <div className="page-container-user">
             <Navigation username={username} />

@@ -1,7 +1,7 @@
 :root {
   --color-white: #fff;
   --color-black: #000;
-  --color-light-grey: #f2f2f2;
+  --color-light-grey: #f3f5f7;
   --color-light-grey-hover: #ebebeb;
   --color-medium-grey: #d5d5d5;
 
@@ -13,6 +13,18 @@
   --color-light-blue: #87a5a3;
   --color-dark-blue: #3e525d;
   --color-dark-blue-hover: #333c43;
+
+  --color-green: #dbeccc;
+  --color-green-dark: #85c481;
+
+  --color-blue: #d2e8f2;
+  --color-blue-dark: rgb(119, 180, 223);
+
+  --color-pink: #eddbd9;
+  --color-pink-dark: #e77f7b;
+
+  --color-purple: #dbd8f3;
+  --color-purple-dark: #827eda;
 
   --border-radius-1: 0.5rem;
   --border-radius-2: 0.1rem;
@@ -213,7 +225,8 @@
 .card {
   width: 100%;
   padding: 1.5rem;
-  height: 200px;
+  /* height: 200px; */
+  height: auto;
   align-items: center;
   border-radius: var(--border-radius-1);
   background-color: var(--color-light-grey);
@@ -247,6 +260,8 @@
   color: var(--color-white);
   margin: 2rem 0;
 }
+
+
 
 
 /* 
@@ -415,7 +430,7 @@ td {
 }
 
 /* Expenses bar (filled part) */
-.leftover-bar {
+.remaining-bar {
   height: 100%;
   border-radius: 5px;
   position: relative; /* Allows us to position the label */
@@ -432,6 +447,41 @@ td {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white; /* You can change the color as desired */
+}
+
+
+
+/* 
+ICONS 
+*/
+.icon {
+  width: 2rem !important;
+  height: 2rem !important;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  padding: 5px;
+  margin-bottom: 1rem;
+}
+
+.icon-income {
+  background-color: var(--color-green);
+  color: var(--color-green-dark);
+}
+
+.icon-housing {
+  background-color: var(--color-blue);
+  color: var(--color-blue-dark);
+}
+
+.icon-recurring {
+  background-color: var(--color-pink);
+  color: var(--color-pink-dark);
+}
+
+.icon-additional {
+  background-color: var(--color-purple);
+  color: var(--color-purple-dark);
 }
 
 
