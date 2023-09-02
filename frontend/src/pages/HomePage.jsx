@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import {toast} from 'react-toastify';
@@ -29,7 +29,7 @@ function HomePage() {
         <div className="page-container">
 
             <div className="image-container">
-                <img src={homeImage} alt="login image" />
+                <img src={homeImage} />
             </div>
 
             <div className="form-container">

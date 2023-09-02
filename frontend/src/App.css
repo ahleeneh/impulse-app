@@ -1,18 +1,18 @@
 :root {
   --color-white: #fff;
   --color-black: #000;
-  --color-light-grey: #f3f3f3;
+  --color-light-grey: #f2f2f2;
   --color-light-grey-hover: #ebebeb;
   --color-medium-grey: #d5d5d5;
-  --color-accent-pink: #ba8871;
-  --color-accent-yellow: #bf9c3c;
-  --color-accent-yellow-hover: #e4a805;
 
+  --color-accent-pink: #ba8871;
+  --color-accent-orange: #b6613c;
+  --color-accent-orange-hover: #ce8e75;
   --color-accent-green: #677a5a;
 
-  --color-light-blue: #afc0ba;
-  --color-dark-blue: #3f494a;
-  --color-dark-blue-hover: #2a3132;
+  --color-light-blue: #87a5a3;
+  --color-dark-blue: #3e525d;
+  --color-dark-blue-hover: #333c43;
 
   --border-radius-1: 0.5rem;
   --border-radius-2: 0.1rem;
@@ -116,7 +116,8 @@
   display: flex;
   justify-content: center;
   height: 100vh;
-  /* background-color: var(--color-dark-blue); */
+  background-color: var(--color-card);
+
 }
 
 .App-nav {
@@ -126,7 +127,7 @@
   padding: 4rem 2rem;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-dark-blue);
+  background-color: var(--color-dark-blue-hover);
   border-radius: 0 2rem 2rem 0;
 }
 
@@ -181,20 +182,25 @@
 .App-content {
   flex: 1;
   margin: 0;
-  padding: 4rem;
-  max-width: 1500px;
+  padding: 4rem 5rem;
+  /* max-width: 1500px; */
   margin: 0 auto 0 0;
   overflow: auto;
 }
 
+
 .App-content h1 {
-  padding: 1rem;
+  padding: 1rem 0;
+}
+
+.max-width-content {
+  max-width: 1400px;
 }
 
 .user-overview,
 .user-goals {
-  padding: 0 1rem;
-  margin: 1.5rem 0;
+  padding: 0;
+  margin: 2rem 0;
   box-sizing: border-box;
 }
 
@@ -206,7 +212,7 @@
 
 .card {
   width: 100%;
-  padding: 1rem;
+  padding: 1.5rem;
   height: 200px;
   align-items: center;
   border-radius: var(--border-radius-1);
@@ -217,19 +223,31 @@
   transition: all 300ms ease;
 }
 
+.card p {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.card h3 {
+  font-weight: 300; 
+  font-size: 1.2rem; 
+}
+
 /* .card:hover {
   background-color: var(--color-light-grey-hover);
 } */
 
 .card-full-width {
-  height: 150px;
-  background-image: url('./images/49.jpg');
+  /* height: 150px; */
+  height: auto;
+  background-image: url('./images/48.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   color: var(--color-white);
-  margin-bottom: 1.5rem;
+  margin: 2rem 0;
 }
+
 
 /* 
   GOALS COMPONENT
@@ -247,13 +265,14 @@
   BUDGET PAGE
 */
 .budget-component {
-  padding: 0 1rem;
-  margin: 1.5rem 0;
+  padding: 0;
+  margin: 2rem 0;
   box-sizing: border-box;
 }
 
 .card-budget {
   height: auto;
+  /* padding: 1.5rem; */
 }
 
 .income,
@@ -263,13 +282,48 @@
   border-top: 10px solid var(--color-light-blue);
 }
 
+.date-picker {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: var(--color-accent-green);
+  padding: 1.5rem 1rem;
+  border-radius: var(--border-radius-1);
+  margin: 2rem 0;
+  background-image: url('./images/56.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: var(--color-white);
+  align-items: center;
+}
+
+.date-picker span {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+select {
+  border: none;
+  border-radius: var(--border-radius-1);
+  background-color: var(--color-card);
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
 
 /* 
   TABLES 
 */
 table {
   width: 100%;
-  /* background-color: red; */
   border-collapse: collapse;
   box-sizing: border-box;
   margin: 0 0 1rem 0;
@@ -288,7 +342,7 @@ th {
 }
 
 td {
-  font-weight: 300;
+  font-weight: 400;
   border-bottom: 1px solid var(--color-light-blue);
   color: var(--color-dark-blue);
 }
@@ -326,13 +380,13 @@ td {
 }
 
 .add-span {
-  color: var(--color-accent-yellow);
+  color: var(--color-accent-orange);
   transition: all 300ms ease;
   cursor: pointer;
 }
 
 .add-span:hover {
-  color: var(--color-accent-yellow-hover);
+  color: var(--color-accent-orange-hover);
 }
 
 .cancel-span {
@@ -346,6 +400,39 @@ td {
 }
 
 
+/* 
+  PROGRESS BAR 
+*/
+/* Container for the progress bar */
+/* Container for the progress bar */
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: var(--color-light-grey);
+  border-radius: 5px;
+  margin: 0.5rem 0;
+  position: relative; /* Allows us to position the label */
+}
+
+/* Expenses bar (filled part) */
+.leftover-bar {
+  height: 100%;
+  border-radius: 5px;
+  position: relative; /* Allows us to position the label */
+  background-image: url('./images/100.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Label for expenses */
+.label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; /* You can change the color as desired */
+}
 
 
 @media(max-width: 1052px) {

@@ -25,14 +25,16 @@ function UserPageWrapper({ children, pageName }) {
         checkAuthentication();
     }, []);
 
-    
+
 
     return (
         <div className="page-container-user">
             <Navigation username={username} />
             <div className="App-content">
-                <h1>{pageName}</h1>
-                {authenticated ? children : null}
+                <div className="max-width-content">
+                    <h1>{pageName}</h1>
+                    {authenticated ? children : null}
+                </div>
             </div>
         </div>
     );

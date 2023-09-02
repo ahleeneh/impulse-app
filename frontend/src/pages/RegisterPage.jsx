@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-toastify';
@@ -29,7 +29,7 @@ function RegisterPage() {
         <div className="page-container">
 
             <div className="image-container">
-                <img src={registerImage} alt="login image" />
+                <img src={registerImage} />
             </div>
 
             <div className="form-container">
