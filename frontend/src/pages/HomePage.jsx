@@ -20,7 +20,6 @@ function HomePage() {
         try {
             // Send a POST request to login a user
             const response = await axios.post('/user/login', { username, password });
-            console.log(response);
 
             // If successful, navigate to the user dashboard
             navigate('/dashboard');

@@ -22,6 +22,7 @@ function DashboardPage() {
         try {
             // Send a GET request to retrieve all budgets associated with a user
             const response = await axios.get('/budget/all-budgets');
+            
             if (response.status === 200) {
                 // If successful, update the state with the fetched budgets
                 setAllUserBudgets(response.data);

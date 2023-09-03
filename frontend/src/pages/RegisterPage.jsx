@@ -21,7 +21,6 @@ function RegisterPage() {
         try {
             // Send a POST request for user registration
             const response = await axios.post('/user/register', { username, email, password });
-            console.log(response);
 
             // If successful, navigate to the login/home page
             navigate('/');
