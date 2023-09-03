@@ -26,6 +26,9 @@
   --color-purple: #dbd8f3;
   --color-purple-dark: #827eda;
 
+  --color-orange: #e4cfc6;
+  --color-orange-dark: #b6613c;
+
   --border-radius-1: 0.5rem;
   --border-radius-2: 0.1rem;
 }
@@ -273,10 +276,9 @@
 
 .card-graph {
   font-weight: 300;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   transition: all 300ms ease;
 }
-
 
 /* 
   GOALS COMPONENT
@@ -521,6 +523,10 @@ td:last-child {
   color: var(--color-purple-dark);
 }
 
+.icon-graph {
+  background-color: var(--color-orange);
+  color: var(--color-orange-dark);
+}
 
 
 /* 
@@ -581,12 +587,6 @@ td:last-child {
   }
 }
 
-/* 
-  INCOME EXPENSES GRAPH 
-*/
-.income-expenses-graph {
-  width: 100%;
-}
 
 
 @media(max-width: 769px) {
@@ -623,6 +623,7 @@ td:last-child {
 
   .App-content {
     padding: 3rem 1rem;
+    /* margin: 0; */
   }
 
   .App-content h1 {
