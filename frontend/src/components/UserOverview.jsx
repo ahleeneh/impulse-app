@@ -56,18 +56,14 @@ function UserOverview({ userBudget }) {
         fetchData();
     }, [userBudget]);
 
-    const calculateRemaining = () => {
+    useEffect(() => {
+        // Calculate the remaining when any of the category sums change
         if (totalIncome !== null && totalHousing !== null && totalRecurring !== null && totalAdditional !== null) {
             const expenses = totalHousing + totalRecurring + totalAdditional;
             setTotalExpenses(expenses);
             const newRemaining = totalIncome - expenses;
             setTotalRemaining(newRemaining);
         }
-    }
-
-    useEffect(() => {
-        // Calculate remaining when any of the category sums change
-        calculateRemaining();
     }, [totalIncome, totalHousing, totalRecurring, totalAdditional]);
 
     const expensesPercentage = (totalExpenses / totalIncome) * 100;
@@ -100,7 +96,7 @@ function UserOverview({ userBudget }) {
                     amount={formatCurrency(totalRecurring)}
                     title="Recurring Expenses"
                 />
-                
+
                 <CategoryCard
                     icon={<LocalMallRoundedIcon className="icon icon-additional" />}
                     amount={formatCurrency(totalAdditional)}
