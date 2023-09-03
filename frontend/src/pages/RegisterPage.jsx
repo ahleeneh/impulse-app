@@ -33,10 +33,10 @@ function RegisterPage() {
             </div>
 
             <div className="form-container">
-
                 <form onSubmit={handleRegister}>
 
                     <h2>Sign up to Impulse</h2>
+
                     <label>Username:</label>
                     <input
                         type="text"
@@ -67,9 +67,11 @@ function RegisterPage() {
                     />
 
                     <button type="submit">Register</button>
+                    
                     <p>Already have an account? <Link to="/">Sign in</Link></p>
                 </form>
             </div>
+
         </div>
     );
 

@@ -417,7 +417,7 @@ td {
 /* 
   PROGRESS BAR 
 */
-.progress-bar {
+.expense-meter {
   width: 100%;
   height: 30px;
   background-color: var(--color-light-grey);
@@ -426,7 +426,7 @@ td {
   position: relative;
 }
 
-.expenses-bar {
+.expense-indicator {
   height: 100%;
   border-radius: 5px;
   position: relative;

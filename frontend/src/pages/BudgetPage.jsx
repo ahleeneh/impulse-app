@@ -37,7 +37,6 @@ function BudgetPage() {
     setSelectedYear(today.getFullYear());
   }
 
-
   return (
     <UserPageWrapper pageName="User Budget">
 
@@ -59,18 +58,21 @@ function BudgetPage() {
             refreshBudget={refreshBudget}
             selectedMonth={selectedMonth}
             selectedYear={selectedYear} />
+
           <BudgetComponent
             category="housing"
             userBudget={userBudget}
             refreshBudget={refreshBudget}
             selectedMonth={selectedMonth}
             selectedYear={selectedYear} />
+
           <BudgetComponent
             category="recurring"
             userBudget={userBudget}
             refreshBudget={refreshBudget}
             selectedMonth={selectedMonth}
             selectedYear={selectedYear} />
+
           <BudgetComponent
             category="additional"
             userBudget={userBudget}

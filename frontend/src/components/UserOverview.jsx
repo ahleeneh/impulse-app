@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import UserExpenseMeter from './UserExpenseMeter';
+
 import WorkRoundedIcon from '@mui/icons-material/WorkRounded';
 import ApartmentRoundedIcon from '@mui/icons-material/ApartmentRounded';
 import PaymentRoundedIcon from '@mui/icons-material/PaymentRounded';
@@ -23,7 +25,7 @@ function UserOverview({ userBudget }) {
 
     const tallyCategory = (category, setCategoryTotal) => {
         try {
-            if (userBudget && userBudget.categories && userBudget.categories[category]) {
+            if (userBudget?.categories?.[category]) {
                 let tallySum = 0;
                 for (let i = 0; i < userBudget.categories[category].length; i++) {
                     tallySum += parseInt(userBudget.categories[category][i].amount)
@@ -72,23 +74,12 @@ function UserOverview({ userBudget }) {
     return (
         <div className="user-overview">
 
-            <div className="card card-full-width">
-                <p>{formatCurrency(totalRemaining)}</p>
-                <h3>Current Balance</h3>
-
-                <div className="progress-bar">
-                    <div
-                        className={`expenses-bar ${expensesPercentage > 100 ? 'over-budget' : ''}`}
-                        style={{ width: `${expensesPercentage > 100 ? 100 : expensesPercentage}%` }}>
-                        <span className="label">
-                            {expensesPercentage > 100
-                                ? 'Budget exceeded!'
-                                : `Expenses: ${formatCurrency(totalExpenses)}`
-                            }
-                        </span>
-                    </div>
-                </div>
-            </div>
+            <UserExpenseMeter
+                expensesPercentage={expensesPercentage}
+                totalRemaining={totalRemaining}
+                totalExpenses={totalExpenses}
+                formatCurrency={formatCurrency}
+            />
 
             <div className="card-container">
                 <div className="card">

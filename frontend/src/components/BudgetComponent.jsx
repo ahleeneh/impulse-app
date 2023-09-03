@@ -1,9 +1,9 @@
 import React from 'react';
 import AddBudgetItemForm from './AddBudgetItemForm';
 
-function BudgetComponent({ userBudget, isLoading, refreshBudget, category, selectedMonth, selectedYear }) {
+function BudgetComponent({ userBudget, refreshBudget, category, selectedMonth, selectedYear }) {
 
-    let categoryItems = userBudget.categories && userBudget.categories[category] ? userBudget.categories[category] : [];
+    let categoryItems = userBudget.categories?.[category] ?? [];
 
     return (
         <div className="budget-component">

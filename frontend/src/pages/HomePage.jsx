@@ -24,7 +24,6 @@ function HomePage() {
         }
     }
 
-
     return (
         <div className="page-container">
 
@@ -36,6 +35,7 @@ function HomePage() {
                 <form onSubmit={handleLogin}>
 
                     <h2>Sign in to Impulse</h2>
+                    
                     <label>Username:</label>
                     <input
                         type="text"
@@ -59,6 +59,7 @@ function HomePage() {
                     <p>Don't have an account? <Link to="/register">Sign up</Link></p>
                 </form>
             </div>
+
         </div>
     );
 
