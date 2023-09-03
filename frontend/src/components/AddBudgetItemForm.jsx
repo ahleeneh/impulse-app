@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function AddBudgetItemForm({ category, selectedMonth, selectedYear, refreshBudget }) {
+function AddBudgetItemForm({ category, selectedMonth, selectedYear, updateCategoryItems }) {
     const [newItemName, setNewItemName] = useState('');
     const [newItemAmount, setNewItemAmount] = useState('');
     const [isAddingItem, setIsAddingItem] = useState(false);
@@ -22,8 +22,10 @@ function AddBudgetItemForm({ category, selectedMonth, selectedYear, refreshBudge
                 year: selectedYear
             });
 
+            console.log(response);
             if (response.status === 200) {
-                refreshBudget();
+                const newItem = { name: newItemName, amount: newItemAmount };
+                updateCategoryItems(newItem);
                 setIsAddingItem(false);
                 setNewItemName('');
                 setNewItemAmount('');

@@ -18,6 +18,7 @@ function useUserBudget(month, year) {
             if (response.status === 204) {
                 setUserBudget([]);
             }
+
         } catch (error) {
             console.error(error);
         } finally {

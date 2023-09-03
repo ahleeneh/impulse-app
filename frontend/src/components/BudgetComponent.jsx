@@ -1,9 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import AddBudgetItemForm from './AddBudgetItemForm';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
-function BudgetComponent({ userBudget, refreshBudget, category, selectedMonth, selectedYear }) {
+function BudgetComponent({ userBudget, category, selectedMonth, selectedYear }) {
+    const [categoryItems, setCategoryItems] = useState(userBudget.categories?.[category] ?? []);
 
-    let categoryItems = userBudget.categories?.[category] ?? [];
+    useEffect(() => {
+        setCategoryItems(userBudget.categories?.[category] ?? []);
+    }, [userBudget]);
+
+    const handleDeleteItem = async (item) => {
+        try {
+            const response = await axios.delete('/budget/delete', {
+                data: {
+                    category: category,
+                    item_name: item.name,
+                    month: selectedMonth,
+                    year: selectedYear
+                }
+            });
+
+            if (response.status === 200) {
+                const updatedCategoryItems = categoryItems.filter((i) => i.name !== item.name);
+                setCategoryItems(updatedCategoryItems);
+            } else {
+                console.error('error deleting item');
+            }
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const updateCategoryItems = (newItem) => {
+        setCategoryItems([...categoryItems, newItem]);
+    }
 
     return (
         <div className="budget-component">
@@ -15,6 +47,7 @@ function BudgetComponent({ userBudget, refreshBudget, category, selectedMonth, s
                         <tr>
                             <th className="item-header">Item</th>
                             <th className="cost-header">Cost</th>
+                            <th className="delete-header">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,6 +55,11 @@ function BudgetComponent({ userBudget, refreshBudget, category, selectedMonth, s
                             <tr key={index}>
                                 <td>{item.name}</td>
                                 <td>${item.amount}</td>
+                                <td>
+                                    <span onClick={() => handleDeleteItem(item)}>
+                                        <DeleteRoundedIcon />
+                                    </span>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -31,7 +69,7 @@ function BudgetComponent({ userBudget, refreshBudget, category, selectedMonth, s
                     category={category}
                     selectedMonth={selectedMonth}
                     selectedYear={selectedYear}
-                    refreshBudget={refreshBudget}
+                    updateCategoryItems={updateCategoryItems}
                 />
 
             </div>

@@ -152,5 +152,40 @@ def add_item_to_budget():
 
     return jsonify({"message": "Item added to budget"}), 200
 
+@app.route('/budget/delete', methods=["DELETE"])
+def delete_budget_item():
+    user_id = session["user_id"]
+
+    if not user_id:
+        return jsonify({"error": "Unauthorized"}), 401
+    
+    data = request.json
+    category = data.get('category')
+    item_name = data.get('item_name')
+    month = data.get('month')
+    year = data.get('year')
+
+    if not (category and item_name and month and year):
+        return jsonify({"error": "Invalid request"}), 400
+    
+    query = {
+        "user_id": user_id,
+        "month": month,
+        "year": year
+    }
+
+    update_data = {
+        "$pull": {
+            f"categories.{category}":{"name": item_name}
+        }
+    }
+
+    result = db.budgets.update_one(query, update_data)
+
+    if result.modified_count == 0:
+        return jsonify({"error": "Item not found"}), 404
+    
+    return jsonify({"message": "Item deleted from budget"}), 200
+
 if __name__ == "__main__":
     app.run(port=6745, debug=True)
