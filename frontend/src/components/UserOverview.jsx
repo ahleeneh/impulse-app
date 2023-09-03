@@ -85,7 +85,7 @@ function UserOverview({ userBudget }) {
                 <div className="card">
                     <WorkRoundedIcon className="icon icon-income" />
                     <p>{formatCurrency(totalIncome)}</p>
-                    <h3>Total Income</h3>
+                    <h3>Total Monthly Income</h3>
                 </div>
 
                 <div className="card">

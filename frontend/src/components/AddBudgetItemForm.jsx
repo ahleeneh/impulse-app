@@ -41,14 +41,14 @@ function AddBudgetItemForm({ category, selectedMonth, selectedYear, updateCatego
                 <div className="add-item-form">
                     <div className="add-item-input-container">
                         <input
-                            className="item-header"
+                            className="add-item-header"
                             type="text"
                             placeholder={category.charAt(0).toUpperCase() + category.slice(1)}
                             value={newItemName}
                             onChange={(e) => setNewItemName(e.target.value)}
                         />
                         <input
-                            className="cost-header"
+                            className="add-cost-header"
                             type="number"
                             placeholder='Amount'
                             value={newItemAmount}

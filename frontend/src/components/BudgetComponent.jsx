@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddBudgetItemForm from './AddBudgetItemForm';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import BudgetTable from './BudgetTable';
 
 function BudgetComponent({ userBudget, category, selectedMonth, selectedYear }) {
     const [categoryItems, setCategoryItems] = useState(userBudget.categories?.[category] ?? []);
@@ -42,28 +42,10 @@ function BudgetComponent({ userBudget, category, selectedMonth, selectedYear }) 
             <div className={`card card-budget ${category}`}>
                 <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th className="item-header">Item</th>
-                            <th className="cost-header">Cost</th>
-                            <th className="delete-header">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {categoryItems.map((item, index) => (
-                            <tr key={index}>
-                                <td>{item.name}</td>
-                                <td>${item.amount}</td>
-                                <td>
-                                    <span onClick={() => handleDeleteItem(item)}>
-                                        <DeleteRoundedIcon />
-                                    </span>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <BudgetTable 
+                    categoryItems={categoryItems}
+                    onDelete={handleDeleteItem}
+                />
 
                 <AddBudgetItemForm
                     category={category}
