@@ -5,21 +5,32 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import homeImage from '../images/43.jpg';
 
+// HomePage component that displays a log in form
 function HomePage() {
     const navigate = useNavigate();
+    
+    // State to store the user's password and username
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
 
+    // Function to handle user login
     const handleLogin = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/login', { username, password });
+            // Send a POST request to login a user
+            const response = await axios.post('/user/login', { username, password });
             console.log(response);
+
+            // If successful, navigate to the user dashboard
             navigate('/dashboard');
+
+            // Display a toast success notification
             toast.success(`Welcome back, ${username}!`, {icon: '👋'});
         } catch (error) {
             console.error(error);
+
+            // If unsuccessful, display a toast error notification
             toast.error('Sorry, the provided username or password is incorrect.', {icon: '🚫'});
         }
     }

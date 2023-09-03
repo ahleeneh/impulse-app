@@ -12,7 +12,7 @@ function Navigation({ username }) {
 
     const handleLogout = async () => {
         try {
-            await axios.post('/logout');
+            await axios.post('/user/logout');
             console.log('User logged out!');
             navigate('/');
         } catch (error) {

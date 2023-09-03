@@ -27,14 +27,16 @@ CORS(app, supports_credentials=True)
 client = MongoClient()
 db = get_database()
 
-
+# -----------------------------
+# Home Route
+# -----------------------------
 @app.route('/')
 def home():
     return "Hello, world!"
 
+# -----------------------------
 # User Routes
-
-
+# -----------------------------
 @app.route('/user')
 def get_current_user():
     user_id = session["user_id"]
@@ -53,7 +55,7 @@ def get_current_user():
     })
 
 
-@app.route('/register', methods=["POST"])
+@app.route('/user/register', methods=["POST"])
 def register_user():
     data = request.json
     username = data.get("username")
@@ -78,7 +80,7 @@ def register_user():
     })
 
 
-@app.route('/login', methods=["POST"])
+@app.route('/user/login', methods=["POST"])
 def login_user():
     username = request.json["username"]
     password = request.json["password"]
@@ -100,13 +102,15 @@ def login_user():
     })
 
 
-@app.route('/logout', methods=["POST"])
+@app.route('/user/logout', methods=["POST"])
 def logout_user():
     session.pop("user_id")
     return "200"
 
 
+# -----------------------------
 # Budget Routes
+# -----------------------------
 @app.route('/budget')
 def get_user_budget():
     user_id = session["user_id"]

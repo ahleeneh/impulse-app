@@ -7,7 +7,9 @@ import ApartmentRoundedIcon from '@mui/icons-material/ApartmentRounded';
 import PaymentRoundedIcon from '@mui/icons-material/PaymentRounded';
 import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
 
+// UserOverview component displays the user's budget categories and expense meter
 function UserOverview({ userBudget }) {
+    // State variables to store category totals and other calculations
     const [totalIncome, setTotalIncome] = useState(null);
     const [totalHousing, setTotalHousing] = useState(null);
     const [totalRecurring, setTotalRecurring] = useState(null);
@@ -15,6 +17,7 @@ function UserOverview({ userBudget }) {
     const [totalExpenses, setTotalExpenses] = useState(null);
     const [totalRemaining, setTotalRemaining] = useState(null);
 
+    // Function to format currency for display
     const formatCurrency = (amount) => {
         return new Intl.NumberFormat('en-us', {
             style: 'currency',
@@ -24,6 +27,7 @@ function UserOverview({ userBudget }) {
         }).format(amount);
     };
 
+    // Function to tally the sum for a given category
     const tallyCategory = (category, setCategoryTotal) => {
         try {
             if (userBudget?.categories?.[category]) {
@@ -39,9 +43,11 @@ function UserOverview({ userBudget }) {
         }
     }
 
+    // Effect to fetch and calculate category totals when the components mounts or the userBudget changes
     useEffect(() => {
         const fetchData = async () => {
             try {
+                // Fetch and calculate totals for different categories
                 await Promise.all([
                     tallyCategory('income', setTotalIncome),
                     tallyCategory('housing', setTotalHousing),
@@ -55,8 +61,10 @@ function UserOverview({ userBudget }) {
         fetchData();
     }, [userBudget]);
 
+    // Effect to calculate remaining budget and percentage of expenses when the component mounts
+    // or any of the category sums change
     useEffect(() => {
-        // Calculate the remaining when any of the category sums change
+        // Calculate total expenses and the remaining budget
         if (totalIncome !== null && totalHousing !== null && totalRecurring !== null && totalAdditional !== null) {
             const expenses = totalHousing + totalRecurring + totalAdditional;
             setTotalExpenses(expenses);
@@ -65,6 +73,7 @@ function UserOverview({ userBudget }) {
         }
     }, [totalIncome, totalHousing, totalRecurring, totalAdditional]);
 
+    // Calculate the percentage of expenses relative to income for user expense meter
     const expensesPercentage = (totalExpenses / totalIncome) * 100;
 
     return (

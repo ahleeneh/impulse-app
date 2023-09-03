@@ -3,21 +3,26 @@ import UserPageWrapper from '../components/UserPageWrapper';
 import BudgetComponent from '../components/BudgetComponent';
 import useUserBudget from '../hooks/useUserBudget';
 
+// BudgetPage component displays the user's budget information
 function BudgetPage() {
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
+  // State variables for the selected month and year
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   
+  // Custom hook to fetch the user's budget data
   const { userBudget, isLoading, refreshBudget } = useUserBudget(selectedMonth, selectedYear);
 
   useEffect(() => {
+    // When the component mounts or when the month/year changes, refresh the budget
     refreshBudget();
   }, [selectedMonth, selectedYear]);
 
+  // Handles navigation to the previous month
   const handlePrevMonth = () => {
     if (selectedMonth === 1) {
       setSelectedMonth(12);
@@ -27,6 +32,7 @@ function BudgetPage() {
     }
   };
 
+  // Handles navigation to the next month
   const handleNextMonth = () => {
     if (selectedMonth === 12) {
       setSelectedMonth(1);
@@ -36,6 +42,7 @@ function BudgetPage() {
     }
   };
 
+  // Handles navigation to the current month and year
   const handleResetToday = () => {
     const today = new Date();
     setSelectedMonth(today.getMonth() + 1);

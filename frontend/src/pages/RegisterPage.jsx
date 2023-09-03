@@ -5,22 +5,33 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import registerImage from '../images/51.jpg';
 
+// RegisterPage component that displays a registration form
 function RegisterPage() {
     const navigate = useNavigate();
+
+    // State to store user registration information
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
 
+    // Function to handle user registration
     const handleRegister = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/register', { username, email, password });
+            // Send a POST request for user registration
+            const response = await axios.post('/user/register', { username, email, password });
             console.log(response);
+
+            // If successful, navigate to the login/home page
             navigate('/');
+
+            // Display a toast success notification
             toast.success('Registration successful! You can now log in.', {icon: '🤝'});
         } catch (error) {
             console.error(error);
+
+            // If unsuccessful, display a toast error notification
             toast.error('Sorry, the provided email or username is already in use.', {icon: '🚫'});
         }
     }
