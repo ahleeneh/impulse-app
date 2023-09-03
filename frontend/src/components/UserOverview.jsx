@@ -27,10 +27,9 @@ function UserOverview({ userBudget }) {
     const tallyCategory = (category, setCategoryTotal) => {
         try {
             if (userBudget?.categories?.[category]) {
-                let tallySum = 0;
-                for (let i = 0; i < userBudget.categories[category].length; i++) {
-                    tallySum += parseInt(userBudget.categories[category][i].amount)
-                }
+                const tallySum = userBudget.categories[category].reduce(
+                    (sum, item) => sum + parseInt(item.amount), 0
+                );
                 setCategoryTotal(tallySum);
             } else {
                 setCategoryTotal(0);
