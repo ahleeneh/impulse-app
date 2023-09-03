@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import UserExpenseMeter from './UserExpenseMeter';
+import CategoryCard from './CategoryCard';
 
 import WorkRoundedIcon from '@mui/icons-material/WorkRounded';
 import ApartmentRoundedIcon from '@mui/icons-material/ApartmentRounded';
@@ -82,29 +83,29 @@ function UserOverview({ userBudget }) {
             />
 
             <div className="card-container">
-                <div className="card">
-                    <WorkRoundedIcon className="icon icon-income" />
-                    <p>{formatCurrency(totalIncome)}</p>
-                    <h3>Total Monthly Income</h3>
-                </div>
+                <CategoryCard
+                    icon={<WorkRoundedIcon className="icon icon-income" />}
+                    amount={formatCurrency(totalIncome)}
+                    title="Total Monthly Income"
+                />
 
-                <div className="card">
-                    <ApartmentRoundedIcon className="icon icon-housing" />
-                    <p>{formatCurrency(totalHousing)}</p>
-                    <h3>Housing Expenses</h3>
-                </div>
+                <CategoryCard
+                    icon={<ApartmentRoundedIcon className="icon icon-housing" />}
+                    amount={formatCurrency(totalHousing)}
+                    title="Housing Expenses"
+                />
 
-                <div className="card">
-                    <PaymentRoundedIcon className="icon icon-recurring" />
-                    <p>{formatCurrency(totalRecurring)}</p>
-                    <h3>Recurring Expenses</h3>
-                </div>
-
-                <div className="card">
-                    <LocalMallRoundedIcon className="icon icon-additional" />
-                    <p>{formatCurrency(totalAdditional)}</p>
-                    <h3>Additional Expenses</h3>
-                </div>
+                <CategoryCard
+                    icon={<PaymentRoundedIcon className="icon icon-recurring" />}
+                    amount={formatCurrency(totalRecurring)}
+                    title="Recurring Expenses"
+                />
+                
+                <CategoryCard
+                    icon={<LocalMallRoundedIcon className="icon icon-additional" />}
+                    amount={formatCurrency(totalAdditional)}
+                    title="Additional Expenses"
+                />
             </div>
 
         </div>

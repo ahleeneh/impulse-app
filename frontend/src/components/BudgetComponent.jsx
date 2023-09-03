@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AddBudgetItemForm from './AddBudgetItemForm';
+import BudgetAddItemForm from './BudgetAddItemForm';
 import BudgetTable from './BudgetTable';
 
 function BudgetComponent({ userBudget, category, selectedMonth, selectedYear }) {
@@ -47,7 +47,7 @@ function BudgetComponent({ userBudget, category, selectedMonth, selectedYear }) 
                     onDelete={handleDeleteItem}
                 />
 
-                <AddBudgetItemForm
+                <BudgetAddItemForm
                     category={category}
                     selectedMonth={selectedMonth}
                     selectedYear={selectedYear}
