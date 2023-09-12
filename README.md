@@ -1,4 +1,4 @@
-# 💸 Impulse App
+# 💸 Impulse
 This application is a personal project created by Aline Murillo that caters to those who prefer a hassle-free approach to budget tracking to get a quick overview of available funds for impulsive purchases.
 
 ## 📄 Project Overview
